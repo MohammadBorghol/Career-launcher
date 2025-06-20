@@ -1,0 +1,86 @@
+﻿@using AIGenerator.DTOs
+@model ResumeUpdateDTO
+
+
+<p class="mt-5"></p>
+<section id="contact" class="contact section light-background">
+    <div class="container" data-aos="fade-up" data-aos-delay="300">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="contact-form bg-white p-4 rounded shadow-sm">
+                    <h3 class="text-center mb-4">Edit your Resume</h3>
+
+                    <form id="cvForm" target="_blank" action="/Resume/Update?resumeId=@Model.resumeId" method="post">
+                        <div class="row gy-4">
+
+                            <div class="col-md-4">
+                                <input type="email" asp-for="email" id="email" class="form-control" placeholder="Email" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="text" asp-for="phoneNumber" id="phoneNumber" class="form-control" placeholder="Phone Number" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="text" asp-for="address" id="address" class="form-control" placeholder="Address" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="url" asp-for="githubLink" id="githubLink" class="form-control" placeholder="GitHub" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="url" asp-for="linkedInLink" id="linkedInLink" class="form-control" placeholder="LinkedIn" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="url" asp-for="facebookLink" id="facebookLink" class="form-control" placeholder="Facebook" />
+                            </div>
+
+                            <div class="col-12">
+                                <textarea asp-for="userPrompt" id="userPrompt" class="form-control" rows="6" placeholder="Other Info (Education, Experience, etc.):" required></textarea>
+                            </div>
+
+
+                            <!-- Hidden field to send merged info -->
+                            <input type="hidden" name="userInput" id="userInput" />
+                            <input type="hidden" asp-for="resumeId" />
+
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary px-5">Edit</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<script>
+    document.getElementById("cvForm").addEventListener("submit", function (e) {
+        const email = document.getElementById("email").value;
+        const phoneNumber = document.getElementById("phoneNumber").value;
+        const address = document.getElementById("address").value;
+        const githubLink = document.getElementById("githubLink").value;
+        const linkedInLink = document.getElementById("linkedInLink").value;
+        const facebookLink = document.getElementById("facebookLink").value;
+        const userPrompt = document.getElementById("userPrompt").value;
+
+        let merged = `Email: ${email}\nPhone: ${phoneNumber}\nAddress: ${address}`;
+
+        if (githubLink) merged += `\nGitHub: ${githubLink}`;
+        if (linkedInLink) merged += `\nLinkedIn: ${linkedInLink}`;
+        if (facebookLink) merged += `\nFacebook: ${facebookLink}`;
+
+        merged += `\n\n${userPrompt}`;
+
+        document.getElementById("userInput").value = merged;
+    });
+</script>
+
+

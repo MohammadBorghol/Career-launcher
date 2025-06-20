@@ -1,0 +1,158 @@
+﻿@model AIGenerator.DTOs.PortfolioCreateDTO
+
+@*  @{
+    Layout = null;
+}  *@
+
+
+<p class="mt-5"></p>
+<section id="contact" class="contact section light-background">
+    <div class="container" data-aos="fade-up" data-aos-delay="300">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="contact-form bg-white p-4 rounded shadow-sm">
+                    <h3 class="text-center mb-4">Create Portfolio</h3>
+
+                    <form id="cvForm" asp-controller="Portfolio" asp-action="Create" enctype="multipart/form-data" method="post">
+                        <div class="row gy-4">
+
+                            <div class="col-md-4">
+                                <input type="email" id="email" class="form-control" placeholder="Email" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="text" id="phoneNumber" class="form-control" placeholder="Phone Number" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="text" id="address" class="form-control" placeholder="Address" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="url" id="githubLink" class="form-control" placeholder="GitHub" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="url" id="linkedInLink" class="form-control" placeholder="LinkedIn" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="url" id="facebookLink" class="form-control" placeholder="Facebook" />
+                            </div>
+
+                            <div class="col-12">
+                                <textarea asp-for="userPrompt" id="userPrompt" class="form-control" rows="6"
+                                          placeholder="Write about yourself in your language (Name/experiances...)" required></textarea>
+                            </div>
+
+                            <label>Upload your Profile picture here:</label>
+                            <input type="file" value="Upload your Image" name="portfolioImage" class="form-control" />
+
+                            <div class="col-md-6">
+                                <label>Choose Your Services: </label>
+                                <select name="serviceIds"
+                                        class="selectpicker"                                                                       
+                                        multiple
+                                        data-live-search="true"
+                                        title="Select Services">
+                                    
+                                    
+                                   
+                                    @foreach (var ser in (List<Service>)ViewBag.services)
+                                    {
+                                        <option value="@ser.serviceId">@ser.serviceName</option>
+                                    }
+                                </select>
+                            </div>
+                            <!-- Projects -->
+                            <div class="col-12">
+                                <label class="form-label">Projects</label>
+                                <div id="projects-container"></div>
+                                <button type="button" class="btn btn-success mt-2" onclick="addProject()">+ Add Project</button>
+                            </div>
+
+                            <!-- Hidden merged info field -->
+                            <input type="hidden" name="userInput" id="userInput" />
+
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary px-5">Create</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    let projectCount = 0;
+
+    function addProject() {
+        const container = document.getElementById("projects-container");
+
+        const projectDiv = document.createElement("div");
+        projectDiv.className = "border p-3 rounded mb-4 bg-light position-relative";
+
+        projectDiv.innerHTML = `
+            <div class="row gy-2">
+                <div class="col-md-6">
+                    <input type="text" name="Projects[${projectCount}].ProjectName" class="form-control" placeholder="Project Name" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="url" name="Projects[${projectCount}].projectLink" class="form-control" placeholder="Project Link">
+                </div>
+                <div class="col-12">
+                    <textarea name="Projects[${projectCount}].projectDescription" class="form-control" rows="2" placeholder="Project Description" required></textarea>
+                </div>
+                <div class="col-md-6">
+                    <input type="date" name="Projects[${projectCount}].startDate" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="date" name="Projects[${projectCount}].endDate" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="file" name="projectImages" class="form-control" required>
+                </div>
+                <div class="col-12">
+                    <select name="Projects[${projectCount}].serviceId" class="form-control" required>
+                        <option value="">Select Related Service</option>
+    @foreach (var service in (List<Service>)ViewBag.services)
+    {
+                                <option value="@service.serviceId">@service.serviceName</option>
+    }
+                    </select>
+                </div>
+                <div class="col-12 text-end">
+                    <button type="button" class="btn btn-danger mt-2" onclick="this.closest('.border').remove()">Remove Project</button>
+                </div>
+            </div>
+        `;
+
+        container.appendChild(projectDiv);
+        projectCount++;
+    }
+
+    document.getElementById("cvForm").addEventListener("submit", function (e) {
+        const email = document.getElementById("email").value;
+        const phoneNumber = document.getElementById("phoneNumber").value;
+        const address = document.getElementById("address").value;
+        const githubLink = document.getElementById("githubLink").value;
+        const linkedInLink = document.getElementById("linkedInLink").value;
+        const facebookLink = document.getElementById("facebookLink").value;
+        const userPrompt = document.getElementById("userPrompt").value;
+
+        let merged = `Email: ${email}\nPhone: ${phoneNumber}\nAddress: ${address}`;
+        if (githubLink) merged += `\nGitHub: ${githubLink}`;
+        if (linkedInLink) merged += `\nLinkedIn: ${linkedInLink}`;
+        if (facebookLink) merged += `\nFacebook: ${facebookLink}`;
+        merged += `\n\n${userPrompt}`;
+
+        document.getElementById("userInput").value = merged;
+    });
+
+    $(document).ready(function () {
+        $('.selectpicker').selectpicker();
+    });
+</script>

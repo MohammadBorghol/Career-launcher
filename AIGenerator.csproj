@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-AIGenerator-453a860f-7ac0-4ddb-9a21-e1815556c969</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\cvAssets\.DS_Store" />
+    <None Include="wwwroot\cvAssets\css\.DS_Store" />
+    <None Include="wwwroot\cvAssets\fontawesome\.DS_Store" />
+    <None Include="wwwroot\cvAssets\images\.DS_Store" />
+    <None Include="wwwroot\cvAssets\scss\.DS_Store" />
+    <None Include="wwwroot\cvAssets\scss\bootstrap\.DS_Store" />
+    <None Include="wwwroot\PortfolioAssets\css\.DS_Store" />
+    <None Include="wwwroot\PortfolioAssets\fonts\.DS_Store" />
+    <None Include="wwwroot\PortfolioAssets\fonts\icomoon\.DS_Store" />
+    <None Include="wwwroot\PortfolioAssets\fonts\icomoon\icomoon\.DS_Store" />
+    <None Include="wwwroot\PortfolioAssets\images\.DS_Store" />
+    <None Include="wwwroot\PortfolioAssets\js\.DS_Store" />
+    <None Include="wwwroot\PortfolioAssets\sass\.DS_Store" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.13" />
+    <PackageReference Include="Microsoft.SemanticKernel" Version="1.54.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+  </ItemGroup>
+
+</Project>

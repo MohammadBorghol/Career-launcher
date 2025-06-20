@@ -1,0 +1,65 @@
+﻿@model AIGenerator.DTOs.ProjectCreateDTO
+
+<p class="mt-5"></p>
+<section id="project" class="contact section light-background">
+    <div class="container" data-aos="fade-up" data-aos-delay="300">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="contact-form bg-white p-4 rounded shadow-sm">
+                    <h3 class="text-center mb-4">Project Information</h3>
+
+                    <form asp-controller="Project" asp-action="Create" enctype="multipart/form-data" method="post">
+                        <div class="row gy-4">
+
+                            <div class="col-md-6">
+                                <input type="text" asp-for="ProjectName" class="form-control" placeholder="Project Name" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="url" asp-for="projectLink" class="form-control" placeholder="Project Link">
+                            </div>
+
+                            <div class="col-12">
+                                <textarea asp-for="projectDescription" class="form-control" rows="3" placeholder="Project Description" required></textarea>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="date" asp-for="startDate" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="date" asp-for="endDate" class="form-control" required>
+                            </div>
+
+                            <div class="col-12">
+                                <select asp-for="serviceId" class="form-control" required>
+                                    <option value="">Select Related Service</option>
+                                    @foreach (var service in (List<Service>)ViewBag.services)
+                                    {
+                                        <option value="@service.serviceId">@service.serviceName</option>
+                                    }
+                                </select>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <input type="file" asp-for="projectImage" class="form-control" required>
+                            </div>
+
+                            <!--hiddent input to send portfolioId-->
+                            <input asp-for="portfolioId" hidden />
+
+
+
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary px-5">Create</button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
