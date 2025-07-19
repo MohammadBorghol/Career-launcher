@@ -55,9 +55,7 @@
                                         multiple
                                         data-live-search="true"
                                         title="Select Services">
-                                    
-                                    
-                                   
+                                                                      
                                     @foreach (var ser in (List<Service>)ViewBag.services)
                                     {
                                         <option value="@ser.serviceId">@ser.serviceName</option>
@@ -68,7 +66,7 @@
                             <div class="col-12">
                                 <label class="form-label">Projects</label>
                                 <div id="projects-container"></div>
-                                <button type="button" class="btn btn-success mt-2" onclick="addProject()">+ Add Project</button>
+                                <button type="button" class="btn btn-success mt-2" style="background:#198754;" onclick="addProject()">+ Add Project</button>
                             </div>
 
                             <!-- Hidden merged info field -->
@@ -89,7 +87,7 @@
 <script>
     let projectCount = 0;
 
-    function addProject() {
+        function addProject() {
         const container = document.getElementById("projects-container");
 
         const projectDiv = document.createElement("div");
@@ -107,10 +105,12 @@
                     <textarea name="Projects[${projectCount}].projectDescription" class="form-control" rows="2" placeholder="Project Description" required></textarea>
                 </div>
                 <div class="col-md-6">
-                    <input type="date" name="Projects[${projectCount}].startDate" class="form-control" required>
+                    <label for="startDate-${projectCount}" class="form-label">Start Date</label>
+                    <input type="date" id="startDate-${projectCount}" name="Projects[${projectCount}].startDate" class="form-control" required>
                 </div>
                 <div class="col-md-6">
-                    <input type="date" name="Projects[${projectCount}].endDate" class="form-control" required>
+                    <label for="endDate-${projectCount}" class="form-label">End Date</label>
+                    <input type="date" id="endDate-${projectCount}" name="Projects[${projectCount}].endDate" class="form-control" required>
                 </div>
                 <div class="col-md-6">
                     <input type="file" name="projectImages" class="form-control" required>
@@ -120,12 +120,12 @@
                         <option value="">Select Related Service</option>
     @foreach (var service in (List<Service>)ViewBag.services)
     {
-                                <option value="@service.serviceId">@service.serviceName</option>
+                            <option value="@service.serviceId">@service.serviceName</option>
     }
                     </select>
                 </div>
                 <div class="col-12 text-end">
-                    <button type="button" class="btn btn-danger mt-2" onclick="this.closest('.border').remove()">Remove Project</button>
+                    <button type="button" class="btn btn-danger mt-2" style="background-color:#dc3545;" onclick="this.closest('.border').remove()">Remove Project</button>
                 </div>
             </div>
         `;
@@ -133,6 +133,7 @@
         container.appendChild(projectDiv);
         projectCount++;
     }
+
 
     document.getElementById("cvForm").addEventListener("submit", function (e) {
         const email = document.getElementById("email").value;

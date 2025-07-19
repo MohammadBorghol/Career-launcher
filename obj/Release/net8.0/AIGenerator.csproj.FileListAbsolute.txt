@@ -308,3 +308,4 @@ C:\Users\LTC\Desktop\ASP.NET Alhussain\c#\AIGenerator\AIGenerator\obj\Release\ne
 C:\Users\LTC\Desktop\ASP.NET Alhussain\c#\AIGenerator\AIGenerator\obj\Release\net8.0\AIGenerator.pdb
 C:\Users\LTC\Desktop\ASP.NET Alhussain\c#\AIGenerator\AIGenerator\obj\Release\net8.0\AIGenerator.genruntimeconfig.cache
 C:\Users\LTC\Desktop\ASP.NET Alhussain\c#\AIGenerator\AIGenerator\obj\Release\net8.0\ref\AIGenerator.dll
+C:\Users\LTC\Desktop\ASP.NET Alhussain\c#\AIGenerator\AIGenerator\obj\Release\net8.0\AIGenerator.sourcelink.json

@@ -8,7 +8,11 @@
 
         public string? ServiceDescription { get; set; }
 
-        public string? ServiceImage { get; set; }
+        public byte[]? serviceImageFile { get; set; }
+
+        public string? serviceImageName { get; set; }
+
+        public string? serviceImageContentType { get; set; }
 
         public bool isDeleted { get; set; }
 

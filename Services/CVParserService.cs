@@ -25,19 +25,22 @@ public class CvParserService : ICVParser
 Extract CV info and return valid JSON only. Rules:
 - Use yyyy or yyyy/mm/dd for dates.
 - Use null (no quotes) for missing numbers (e.g., GPA).
-- Use null for missing data.
+- Use null (no quotes) for missing data or for N/A.
 - Use true/false for booleans, not strings.
 - generate a reasonable professional summary(Bio) based on the available data.
 - summary should be 4–5 line .and Use present tense for skills, past for achievements. No 'I' or name. Keep it concise and professional.
-- Output JSON only, no extra text.
 - skill type is Soft or Technical and write every skill alone.
 - in experience if he still working endDate= Present
 - in exsperience if he didn't mention the title or multiple expectid duties fill it from the information you have 
 - rewrite duties in reasonable professional
-- userPrompt = just the paragraph
+- make all the content grammarly correcte and professional.
+- if there is links fill them
+- Output JSON only, no extra text.
 
 {
   ""firstName"": string,
+  ""secondName"": string,
+  ""thirdName"": string,
   ""lastName"": string,
   ""email"": string,
   ""phoneNumber"": string,
@@ -126,4 +129,7 @@ JSON:
 
         return resume!;
     }
+
+
+
 }

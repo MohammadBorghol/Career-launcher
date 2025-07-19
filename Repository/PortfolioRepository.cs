@@ -16,14 +16,15 @@ namespace AIGenerator.Repository
             _context = context;
         }
 
-        public List<Portfolio> GetAllPortfolios(string UserId)
+        public List<Portfolio> GetAllPortfolios(string userId)
         {
             return _context.Portfolios
-                 .Include(x => x.portfolioServices)
-                        .ThenInclude(x=>x.service)
-                 .Include(x => x.projects)
-                 .Where(x => x.endUserId == UserId)
-                 .ToList();
+                .Where(x => x.endUserId == userId && !x.isDeleted)
+                .Include(x => x.portfolioServices)
+                    .ThenInclude(x => x.service)
+                .Include(x => x.projects)
+                .AsNoTracking()
+                .ToList();
         }
 
         public async Task<Portfolio> GetPortfolioById(int Id)

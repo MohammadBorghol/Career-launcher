@@ -34,7 +34,7 @@ public class Program
         builder.Services.AddTransient<IResumeRepository, ResumeRepository>();
         builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
         builder.Services.AddTransient<IProjectRepository, ProjectRepository>();
-
+        builder.Services.AddTransient<IServiceRepository, ServiceRepository>();
 
         var key = builder.Configuration["OpenAI:Key"];
 

@@ -1,0 +1,93 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+
+<!-- Sale & Revenue Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+       @*  <div class="col-sm-6 col-xl-3">
+            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-line fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Today Sale</p>
+                    <h6 class="mb-0">$1234</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Total Sale</p>
+                    <h6 class="mb-0">$1234</h6>
+                </div>
+            </div>
+        </div> *@
+        <div class="col-sm-6 col-xl-4">
+            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-file-alt fa-3x text-primary"></i> <!-- Changed icon -->
+                <div class="ms-3">
+                    <p class="mb-2">Total Resumes</p>
+                    <h6 class="mb-0" id="total-resumes">0</h6> <!-- ID added for JS -->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-4">
+            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-pie fa-3x text-primary"></i> <!-- Keep icon or change it -->
+                <div class="ms-3">
+                    <p class="mb-2">Total Portfolios</p>
+                    <h6 class="mb-0" id="total-portfolios">0</h6> <!-- Added ID -->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-4">
+            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-users fa-3x text-primary"></i> <!-- Different icon and color -->
+                <div class="ms-3">
+                    <p class="mb-2">Total Users</p>
+                    <h6 class="mb-0" id="total-users">0</h6> <!-- Added ID -->
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+<!-- Sale & Revenue End -->
+
+<!-- Sales Chart Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+
+
+        @* <div class="col-sm-12 col-xl-6">
+            <div class="bg-light text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">Resume & Portfolio Stats</h6>
+                </div>
+                <canvas id="worldwide-sales" width="400" height="300"></canvas>
+            </div>
+        </div> *@
+
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">Resume & Portfolio</h6>
+                    
+                </div>
+
+                
+                <canvas id="Resume-Portfolio2" style="width: 100% !important ; height: 350px;"></canvas>
+                                                                             
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Sales Chart End -->
+

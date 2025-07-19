@@ -13,37 +13,42 @@
                         <div class="row gy-4">
 
                             <div class="col-md-4">
-                                <input type="email" id="email" class="form-control" placeholder="Email" required>
+                                <input type="email" asp-for="email" class="form-control" placeholder="Email" required>
+                                <span asp-validation-for="address"></span>
+
                             </div>
 
                             <div class="col-md-4">
-                                <input type="text"  id="phoneNumber" class="form-control" placeholder="Phone Number" required>
+                                <input type="text"  asp-for="phoneNumber" class="form-control" placeholder="Phone Number" required>
+                                <span asp-validation-for="address"></span>
+
                             </div>
 
                             <div class="col-md-4">
-                                <input type="text"  id="address" class="form-control" placeholder="Address" required>
+                                <input type="text"  asp-for="address" class="form-control" placeholder="Address" required>
+                                <span asp-validation-for="address"></span>
                             </div>
 
                             <div class="col-md-4">
-                                <input type="url"  id="githubLink" class="form-control" placeholder="GitHub" />
+                                <input type="url"  asp-for="githubLink" class="form-control" placeholder="GitHub" />
                             </div>
 
                             <div class="col-md-4">
-                                <input type="url"  id="linkedInLink" class="form-control" placeholder="LinkedIn" />
+                                <input type="url"  asp-for="linkedInLink" class="form-control" placeholder="LinkedIn" />
                             </div>
 
                             <div class="col-md-4">
-                                <input type="url"  id="facebookLink" class="form-control" placeholder="Facebook" />
+                                <input type="url"  asp-for="facebookLink" class="form-control" placeholder="Facebook" />
                             </div>
 
                             <div class="col-12">
                                 <textarea asp-for="userPrompt" id="userPrompt" class="form-control" rows="6"
                                 placeholder="Write about yourself in your language (Name,Education, Experience,cartificate,skills etc.):" required></textarea>
                             </div>
-
+                           
 
                             <!-- Hidden field to send merged info -->
-                            <input type="hidden" name="userInput" id="userInput" />
+                            @* <input type="hidden" name="userInput" id="userInput" /> *@
 
                             <div class="col-12 text-center">
                                 <button type="submit" class="btn btn-primary px-5">Create</button>
@@ -63,7 +68,7 @@
 
 
 
-<script>
+<script>@*
     document.getElementById("cvForm").addEventListener("submit", function (e) {
         const email = document.getElementById("email").value;
         const phoneNumber = document.getElementById("phoneNumber").value;
@@ -82,5 +87,5 @@
         merged += `\n\n${userPrompt}`;
 
         document.getElementById("userInput").value = merged;
-    });
+    }); *@
 </script>

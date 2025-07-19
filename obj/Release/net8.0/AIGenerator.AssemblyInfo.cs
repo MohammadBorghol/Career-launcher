@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AIGenerator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d187ab3f0a5876a09618fa453780fb68f68ad30c")]
 [assembly: System.Reflection.AssemblyProductAttribute("AIGenerator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AIGenerator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

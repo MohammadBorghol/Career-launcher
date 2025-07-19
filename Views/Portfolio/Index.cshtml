@@ -1,4 +1,4 @@
-﻿@model Portfolio
+﻿@model List<Portfolio>
 
 <section class="section py-5 ">
     <p class="mt-5"></p>
@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in (List<Portfolio>)ViewBag.portfolios)
+                    @foreach (var item in Model)
                     {
                         if (!item.isDeleted)
                         {

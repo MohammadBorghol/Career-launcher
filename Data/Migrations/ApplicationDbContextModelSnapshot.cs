@@ -465,11 +465,17 @@ namespace AIGenerator.Data.Migrations
                     b.Property<string>("ServiceDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ServiceImage")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("isDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("serviceImageContentType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("serviceImageFile")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("serviceImageName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("serviceName")
                         .HasColumnType("nvarchar(max)");

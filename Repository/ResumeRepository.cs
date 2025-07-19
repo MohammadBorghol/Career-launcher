@@ -50,21 +50,8 @@ namespace AIGenerator.Repository
             resume.isDeleted = false;
             resume.endUserId = userId;
 
-            // Ensure child entities do not contain full parent reference
-            foreach (var edu in resume.educations)
-                edu.resumeId = resume.resumeId;
-
-            foreach (var exp in resume.experiences)
-                exp.resumeId = resume.resumeId;
-
-            foreach (var skill in resume.skills)
-                skill.resumeId = resume.resumeId;
-
-            foreach (var lang in resume.languages)
-                lang.resumeId = resume.resumeId;
-
-            foreach (var cert in resume.certificates)
-                cert.resumeId = resume.resumeId;
+           
+           
 
             await _context.Resumes.AddAsync(resume);
             await _context.SaveChangesAsync();
@@ -73,8 +60,8 @@ namespace AIGenerator.Repository
             public async Task Update(Resume resume)
             {        
                 _context.Resumes.Update(resume);
-                _context.SaveChanges();
-            }
+            await _context.SaveChangesAsync();
+        }
 
             public void Delete(int id)
             {

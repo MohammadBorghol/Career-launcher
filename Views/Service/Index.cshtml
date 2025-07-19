@@ -1,0 +1,36 @@
+﻿
+@{
+     Layout = "_AdminLayout";
+    ViewData["Title"] = "Manage Services";
+}
+
+<h2 class="mb-4">Service List</h2>
+
+<a asp-controller="Service" asp-action="Create" class="btn btn-success mb-3">+ Add New Service</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-light">
+        <tr>         
+            <th>Name</th>
+            <th>Description</th>
+            <th style="width: 150px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var service in ViewBag.services)
+        {
+            <tr>                
+                <td>@service.serviceName</td>
+                <td>@service.ServiceDescription</td>
+                <td>
+                    <a asp-controller="Service" asp-action="Edit" asp-route-serviceId="@service.serviceId" class="btn btn-sm btn-primary">Edit</a>
+
+                    <form asp-controller="Servic" asp-route-id="@service.serviceId" method="post" class="d-inline"
+                          onsubmit="return confirm('Are you sure you want to delete this service?');">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -90,10 +90,21 @@
 								<h3><span>@Model.title</span></h3>
 								<p>
 									<ul class="fh5co-social-icons">
-										<li><a href="#"><i class="icon-twitter2"></i></a></li>
-										<li><a href="#"><i class="icon-facebook2"></i></a></li>
-										<li><a href="#"><i class="icon-linkedin2"></i></a></li>
-										<li><a href="#"><i class="icon-dribbble2"></i></a></li>
+
+										@if (HasValue(Model.facebookLink))
+										{
+											<li><a href="@Model.facebookLink
+												"><i class="icon-facebook2"></i></a></li>
+										}
+										@if (HasValue(Model.linkedInLink))
+										{
+											<li><a href="@Model.linkedInLink"><i class="icon-linkedin2"></i></a></li>
+										}
+										@if (HasValue(Model.githubLink))
+										{
+											<li><a href="@Model.githubLink"><i class="icon-github"></i></a></li>
+										}
+
 									</ul>
 								</p>
 							</div>
@@ -111,7 +122,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-4" id="Contact-Info">
 						<ul class="info">
 							@if (HasValue(Model.firstName))
 							{
@@ -190,16 +201,26 @@
 							{
 								<div class="col-md-4 text-center">
 									<div class="feature-left">
-										<span class="icon">
-											<i class="icon-html-five"></i>
-										</span>
+										@if (ps.service.serviceImageFile != null && ps.service.serviceImageFile.Length > 0)
+										{
+											var base64 = Convert.ToBase64String(ps.service.serviceImageFile);
+											var contentType = ps.service.serviceImageContentType ?? "image/jpeg";
+											<img src="data:@contentType;base64,@base64" alt="Service Image" class="img-fluid mb-3" style="max-height: 150px;" />
+										}
+										else
+										{
+											<img src="~/images/placeholder.png" alt="No Image" class="img-fluid mb-3" style="max-height: 150px;" />
+										}
+
 										<div class="feature-copy">
 											<h3>@ps.service.serviceName</h3>
-											<p>@ps.service.ServiceDescription</p> <!-- Optional if Service has description -->
+											<p>@ps.service.ServiceDescription</p>
 										</div>
 									</div>
 								</div>
 							}
+
+						
 						</div>
 
 
@@ -222,7 +243,7 @@
 					</div>
 				</div>
 				<div class="row">
-					@foreach(var pro in Model.projects)
+					@foreach (var pro in Model.projects)
 					{
 						<div class="col-md-4">
 							<div class="fh5co-blog animate-box">
@@ -231,33 +252,30 @@
 									string base64Image = Convert.ToBase64String(pro.projectImageFile);
 									string mimeType = pro.projectImageContentType ?? "image/jpeg";
 									string imageDataUrl = $"data:{mimeType};base64,{base64Image}";
-									<a href="#" class="blog-bg" style="background-image: url('@imageDataUrl');"></a>
 
+									<a href="@pro.projectLink" target="_blank" class="blog-bg"
+									   style="background-image: url('@imageDataUrl'); height: 180px; background-size: cover; background-position: center;">
+									</a>
 								}
 								else
 								{
 									<p>No image uploaded.</p>
 								}
-								
+
 								<div class="blog-text">
 									<span class="posted_on">@pro.service.serviceName</span>
-									<h3><a href="#">@pro.ProjectName</a></h3>
+									<h3><a href="@pro.projectLink" target="_blank">@pro.ProjectName</a></h3>
 									<p>@pro.projectDescription</p>
-									<ul class="stuff">
-										<li>@pro.startDate - </li>
-										<li>@pro.endDate</li>
-										@if (pro.projectLink != null)
-										{
-											<li><a href="@pro.projectLink">Project here<i class="icon-arrow-right22"></i></a></li>
-
-										}
+									<ul class="stuff" style="text-align: left; padding-left: 0; list-style: none;">
+										<li style="display: inline; margin-right: 15px;"><strong>Start:</strong> @pro.startDate</li>
+										<li style="display: inline;"><strong>End:</strong> @pro.endDate</li>
 									</ul>
 								</div>
 							</div>
 						</div>
 					}
-					
-					
+
+
 				</div>
 			</div>
 		</div>
@@ -271,7 +289,7 @@
 					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 						<h2>Hire Me!</h2>
 						<p></p>
-						<p><a href="#" class="btn btn-default btn-lg">Contact Us</a></p>
+						<p><a href="#Contact-Info" class="btn btn-default btn-lg">Contact Us</a></p>
 					</div>
 				</div>
 			</div>
@@ -280,16 +298,16 @@
 
 	</div>
 
-@* 	<div id="fh5co-footer">
+ 	<div id="fh5co-footer">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<p>&copy; 2017 Free HTML5 Template. All Rights Reserved. <br>Designed by <a href="http://freehtml5.co" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.com" target="_blank">Unsplash</a></p>
+					<p>&copy; 2025  All Rights Reserved. Designed by CLauncher</p>
 				</div>
 			</div>
 		</div>
 	</div>
- *@
+ 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
 	</div>

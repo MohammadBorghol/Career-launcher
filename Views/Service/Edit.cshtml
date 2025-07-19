@@ -1,0 +1,38 @@
+﻿@model AIGenerator.DTOs.ServiceUpdateDTO
+
+@{
+    Layout = "_AdminLayout";
+
+    ViewData["Title"] = "Edit Service";
+}
+
+<div class="container mt-5">
+    <h2>Edit Service</h2>
+
+    <form asp-action="Edit" asp-controller="Service" asp-route-serviceId="@Model.ServiceId" enctype="multipart/form-data" method="post" class="mt-4">
+        <div class="mb-3">
+            <label asp-for="ServiceName" class="form-label"></label>
+            <input asp-for="ServiceName" class="form-control" />
+            <span asp-validation-for="ServiceName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ServiceDescription" class="form-label"></label>
+            <textarea asp-for="ServiceDescription" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="ServiceDescription" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ServiceImage" class="form-label">Change Image</label>
+            <input asp-for="ServiceImage" type="file" class="form-control" />
+            <span asp-validation-for="ServiceImage" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

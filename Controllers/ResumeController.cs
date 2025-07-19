@@ -6,6 +6,7 @@ using AIGenerator.Models;
 using AIGenerator.Repository;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SQLitePCL;
 using System.Security.Claims;
@@ -48,19 +49,34 @@ namespace AIGenerator.Controllers
         }
 
         public async Task<IActionResult> Create(ResumeCreateDTO dto)
-        {
-            var resume = await _parser.ParseCvAsync(dto.userInput);
+        {     
 
-            var currentUserId = GetUserId();
+                dto.userInput = string.Join("\n", new[]
+                   {
+                    $"Email: {dto.email}",
+                    $"Address: {dto.address}",
+                    $"PhoneNumber: {dto.phoneNumber}",
+                    $"linkedInLink: " + (dto.linkedInLink != null ? dto.linkedInLink.Trim() : "N/A"),
+                    $"facebookLink: " + (dto.facebookLink != null ? dto.facebookLink.Trim() : "N/A"),
+                    $"githubLink: " + (dto.githubLink != null ? dto.githubLink.Trim() : "N/A"),
+                    $"Additional Info:\n{dto.userPrompt}"
+                    }.Where(p => !string.IsNullOrWhiteSpace(p)));
 
-          await  _ResumeRepo.Create(resume, currentUserId);
+                var resume = await _parser.ParseCvAsync(dto.userInput);
 
-            return RedirectToAction("ParsedResume", new { resumeId = resume.resumeId });
+                var currentUserId = GetUserId();
+                resume.userPrompt = dto.userPrompt;
+                await _ResumeRepo.Create(resume, currentUserId);
+
+                return RedirectToAction("ParsedResume", new { resumeId = resume.resumeId });
+            
+           
         }
+
 
         public async Task<IActionResult> Edit(int resumeId)
         {
-            var resume=await _ResumeRepo.GetResumeById(resumeId);
+            var resume = await _ResumeRepo.GetResumeById(resumeId);
 
             ResumeUpdateDTO dto = new ResumeUpdateDTO();
 
@@ -74,6 +90,8 @@ namespace AIGenerator.Controllers
             dto.userPrompt = resume.userPrompt;
 
             return View(dto);
+        
+        
         }
 
 

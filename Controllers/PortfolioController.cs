@@ -36,9 +36,9 @@ namespace AIGenerator.Controllers
         public IActionResult Index()
         {
             var CurrentUserId = GetUserId();
-            ViewBag.portfolios = _PorfolioRepo.GetAllPortfolios(CurrentUserId);
+           List<Portfolio> portfolios = _PorfolioRepo.GetAllPortfolios(CurrentUserId);
 
-            return View();
+           return View(portfolios);
         }
 
         public IActionResult Add()

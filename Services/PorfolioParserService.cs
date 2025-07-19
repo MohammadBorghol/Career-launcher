@@ -10,8 +10,6 @@ namespace AIGenerator.Services
     {
         private readonly Kernel _kernel;
 
-
-
         public PorfolioParserService(Kernel kernel)
         {
             _kernel = kernel;
@@ -26,11 +24,13 @@ Extract Portfolio info and return valid JSON only. Rules:
 - Use null for missing data.
 - Use true/false for booleans, not strings.
 - generate a reasonable professional summary(Bio) based on the available data.
+- summary should be 4–5 line .and Use present tense for skills, past for achievements. No 'I' or name. Keep it concise and professional.
 - Output JSON only, no extra text.
-- userPrompt = just the paragraph
 
 {
   ""firstName"": string,
+  ""secondName"": string,
+  ""thirdName"": string,
   ""lastName"": string,
   ""email"": string,
   ""phoneNumber"": string,
@@ -38,7 +38,10 @@ Extract Portfolio info and return valid JSON only. Rules:
   ""address"": string,
   ""summary"": string,
   ""title"": string,
-  ""userPrompt"": string
+  ""linkedInLink"": string,
+  ""facebookLink"": string,
+  ""githubLink"": string,
+  
 
 }
 Portfolio TEXT:

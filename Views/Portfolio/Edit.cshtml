@@ -38,13 +38,17 @@
                                 <textarea asp-for="userPrompt" id="userPrompt" class="form-control" rows="6" placeholder="Brief summary about yourself..." required></textarea>
                             </div>
 
-                            <div class="col-md-12">
+                            <label>Upload your Profile picture here:</label>
                             <input type="file" name="portfolioImage" class="form-control" required>
-                            </div>
+                           
 
                             <div class="col-md-6">
                                 <label>Choose Your Services: </label>
-                                <select name="serviceIds" class="form-control" multiple>
+                                <select name="serviceIds" class="selectpicker"
+                                        multiple
+                                        data-live-search="true"
+                                        title="Select Services">
+                                    
                                     @foreach (var ser in (List<Service>)ViewBag.services)
                                     {
                                         <option value="@ser.serviceId" selected="@(Model.serviceIds.Contains(ser.serviceId))">
